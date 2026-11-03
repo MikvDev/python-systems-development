@@ -13,7 +13,7 @@ totalMissionPoints = 0
 missionCompleted = 0
 avaragePointsMissions = 0
 if energy < 25:
-    print("ENERGIA INSUFICIENTE")
+    print("\n↓ ENERGIA INSUFICIENTE ↓\n")
 else:
 
     for mission in range(1,6):
@@ -24,23 +24,25 @@ else:
        totalMissionPoints += missionPoints
        energy -= 25
        missionCompleted += 1
-       if energy >= 25:
-               continue
-       else: 
-           print("ENERGIA INSUFICIENTE")
-           break
+       if energy < 25:
+               if mission < 5:
+                 print("\nENERGIA INSUFICIENTE\n")
+       break
+       
+           
 
-if  missionPoints <= 0 and missionCompleted <= 0:
-      print("Valores inválidos para calcular media de pontos")
 
-else :
-     avaragePointsMissions = missionPoints / missionCompleted
-print("\n=====================================")
-print("MISSÕES REALIZADAS:", missionCompleted)
-print("TOTAL DE PONTOS:", totalMissionPoints)
-print("MEDIA DE PONTOS:", avaragePointsMissions)
-print("ENERGIA RESTANTE:", energy)
-print("\n=====================================")
+
+    
+if missionCompleted > 0:
+    avaragePointsMissions = totalMissionPoints / missionCompleted
+
+print("=====================================")
+print(" →  MISSÕES REALIZADAS:", missionCompleted)
+print(" →  TOTAL DE PONTOS:", totalMissionPoints)
+print(" →  MEDIA DE PONTOS:", avaragePointsMissions)
+print(" →  ENERGIA RESTANTE:", energy)
+print("=====================================")
 
         
 
