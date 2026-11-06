@@ -1,0 +1,13 @@
+
+# Leia quatro nomes e armazene-os em uma lista inicialmente vazia. Depois, mostre cada nome em uma linha, na ordem de cadastro. Nomes repetidos são permitidos.
+listNames = []
+for names in range(1,5):
+    name = input("Digite o nome do aluno: ")
+    listNames.append(name)
+
+print("Nomes cadastrados:")
+print(listNames[0])
+print(listNames[1])
+print(listNames[2])
+print(listNames[3])
+
