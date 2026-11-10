@@ -17,5 +17,5 @@ print("Saldo atual:", saldo) # 65
 saldo = saldo - 15
 print("Saldo anterior:", saldo_anterior) # 80
 print("Saldo atual:", saldo) # 50
-
+    
 # O saldo anterior mantém o valor que recebeu na atribuição porque ele foi definido antes das alterações no saldo. Quando fazemos a atribuição `saldo_anterior = saldo`, o valor de `saldo` naquele momento (80) é copiado para `saldo_anterior`. Alterações subsequentes em `saldo` não afetam `saldo_anterior`, pois são variáveis independentes.
