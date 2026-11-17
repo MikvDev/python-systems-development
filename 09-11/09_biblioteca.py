@@ -20,6 +20,7 @@ import os
 
 class Livro:
     def __init__(self, titulo, emprestado):
+        
         self.titulo = titulo 
         self.emprestado = emprestado
 

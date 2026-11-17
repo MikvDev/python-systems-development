@@ -31,16 +31,16 @@ while True:
             for idx, point in enumerate(listPoints, start=1):
                 print(f"Missão {idx}: {point} pontos")
             
-            # Cálculos automáticos baseados no estado atual da lista
+           
             quantidade = len(listPoints)
             total = sum(listPoints)
             media = total / quantidade
             maior = max(listPoints)
             
-            # Contagem de missões com pelo menos 70 pontos (pelo menos significa >= 70)
+            
             missionAbove70 = sum(1 for p in listPoints if p >= 70)
             
-            # DESAFIO ADICIONAL: Nova lista contendo apenas pontuações >= 70
+           
             lista_filtrada = [p for p in listPoints if p >= 70]
             
             print(f"\nQuantidade de missões: {quantidade}")
