@@ -60,7 +60,9 @@ while True:
             
             print(f"<| -> {i} - {tarefa.descricao}")
     elif op == '3':
-
+        concluirTarefa =  input("Digite a descrição da tarefa que deseja concluir")
+        if concluirTarefa in listaTarefas:
+               
     elif op == '0':
         break
             
