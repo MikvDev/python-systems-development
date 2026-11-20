@@ -21,6 +21,10 @@
 
 # Resultados de referência: após concluir a primeira tarefa, o resumo deve indicar 2 tarefas, 1 pendente e 1 concluída. Após reabri-la, deve indicar 2 pendentes e 0 concluídas. Tentativas recusadas não alteram esses totais.
 
+import os
+import time
+
+
 class Tarefa:
     def __init__(self, descricao):
         self.descricao = descricao
@@ -31,13 +35,23 @@ class Tarefa:
             return True
         else:
             return False
-  
+    def reabrir(self):
+        if self.concluida != False:
+            self.concluida = False
+            return True
+        else:
+            return False
+    def __str__(self):
 
+       status  = "sim" if self.concluida else 'pendente'
+       return(f"{self.descricao} - concluida: {status}")
+  
 listaTarefas = []
 
 
+
 while True:
-    # arrume esse menu com prints 
+    
     print("\n1 - Cadastrar tarefa")
     print("2 - Listar tarefas")
     print("3 - Concluir tarefa")
@@ -47,22 +61,75 @@ while True:
 
     op = input("\n<| -> Digite uma opção:")
     if op == '1':
-        descricao = input("<| -> Digite a descricao da tarefa: ")
-        if descricao == "" or descricao in listaTarefas:
-            pass
+    
+        descricao = input("<| -> Digite a descricao da tarefa: ").strip().lower()
+
+        existe = any(t.descricao == descricao for t in listaTarefas)
+        if descricao == "" or existe:
+            print("\nDescrição vazia ou já está na lista")
         else:
-            listaTarefas.append(Tarefa(descricao))
+            newTarefa = Tarefa(descricao) 
+            listaTarefas.append(newTarefa)
     elif op == '2':
-        i = 0
-        print("\nLista de tarefas")
-        for tarefa in listaTarefas:
-            i+=1
+        if not listaTarefas:
+            print("Nenhuma tarefa cadastrada!")
+        else:
+            i = 0
+            print("\nLista de tarefas")
+            for tarefa in listaTarefas:
+                i+=1
             
-            print(f"<| -> {i} - {tarefa.descricao}")
+                print(f"<| -> {i} - {tarefa.descricao}")
     elif op == '3':
-        concluirTarefa =  input("Digite a descrição da tarefa que deseja concluir")
-        if concluirTarefa in listaTarefas:
-               
+        busca =  input("Digite a descricao da tarefa que deseja concluir: ").strip().lower()
+        encontrada = False
+        for tarefa in listaTarefas:
+            if tarefa.descricao == busca:   
+                if tarefa.concluir():
+                    encontrada = True
+                    
+                    print("Tarefa concluida!")
+                else:
+                    print("Terafa já está concluida!")
+                break
+        if not encontrada:
+            print("Tarefa não foi enconutrada!")
+    elif op == '4':
+        busca =  input("Digite a descricao da tarefa que deseja reabrir: ").strip().lower()
+        existe = False
+        for tarefa in listaTarefas:
+            if tarefa.reabrir():
+                existe = True
+                print("Tarefa foi reaberta!")   
+            else:
+                print("Esta tarefa já está aberta!")
+            break
+
+        if not existe:
+            print("Tarefa não foi encontrada!")
+        pass
+    elif op == '5':
+        if len(listaTarefas) > 0:
+            total = 0
+            concluidas = 0
+            pendentes =0 
+
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('<| - Tarefas - |>')
+            for tarefa in listaTarefas:
+              if tarefa.concluida == True:
+                  concluidas += 1
+              else:
+                  pendentes += 1 
+              print(tarefa)
+            print("\nTotal:", len(listaTarefas))
+            print("Pendentes:", pendentes)
+            print("Concluidas:", concluidas)
+            time.sleep(4)
+        else:
+            print("Nenhuma tarefa criada")
     elif op == '0':
         break
+    else:
+        print("Opção invalida!")
             

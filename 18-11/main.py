@@ -16,12 +16,17 @@ def SingUp():
     email = inputEmail.get()
     city = inputCity.get()
     if age == "" or name == "" or email == '':
-        print("Valores de entrada dos inputs estão vazios ")
+        print("Preencha os campos vazios! ")
+        welcomeLabel.configure(text="Preencha os campos vazios!")
         return
     else:
         
         
-        welcomeLabel.configure(text=f"Olá {name}, idade: {age} Seu email de cadatro é: {email}, cidade que reside: {city}" )
+        welcomeLabel.configure(text=f"Olá {name}, idade: {age} Seu email de cadastro é: {email}, cidade que reside: {city}" )
+        inputName.delete(0,tk.END)
+        inputAge.delete(0,tk.END)
+        inputEmail.delete(0,tk.END)
+        inputCity.delete(0,tk.END)
     
 
 
