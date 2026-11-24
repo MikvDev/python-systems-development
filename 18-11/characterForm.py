@@ -29,10 +29,18 @@ class Charater:
     def __str__(self):
         return f"{self.name} ({self.userClass}) | Nv.{int(self.xp)} | HP:{int(self.life)}"
 
-    
+
+
+# Tecla de atalho para baixar
+
+
+
+
+ 
+     
 # função de cadastro
 
-def singUp():
+def singUp(event=None):
     name = inputName.get().strip()
     userClass = inputClass.get().strip()
     xp = inputXP.get().strip()
@@ -68,9 +76,11 @@ def singUp():
 
 
 def remove():
-    indice = ListCharacters.curselection()
-    values = [ListCharacters.get(i) for i in indice]
-    ListCharacters.delete(values)
+    
+    indices = ListCharacters.curselection()
+    for i in reversed(indices):
+        ListCharacters.delete(i)
+    
     
 
 
@@ -98,11 +108,13 @@ ListCharacters = tk.Listbox(mainContainer,selectmode=tk.EXTENDED, width=30)
 # Inputs
 
 inputName = tk.Entry(containerForm)
+
 inputClass = tk.Entry(containerForm)
 inputXP = tk.Entry(containerForm)
 inputLife = tk.Entry(containerForm)
 
-
+for campo in (inputName,inputClass, inputLife, inputXP):
+    campo.bind('<Return>', singUp)
 # Botão
 
 singUpBtn = tk.Button(containerForm,text='Cadastrar', command=singUp, width=17)

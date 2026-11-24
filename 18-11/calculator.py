@@ -5,9 +5,20 @@ import tkinter as tk
 window = tk.Tk()
 window.geometry('500x500')
 
+# segunda maneira de fazer a função de calculo 
+# usanso command: lambda: calcular("+")
 
-
-
+def calcular(operacao):
+    if operacao == "+":
+        lblResult.config(text=f"Resultado: {int({inputNumberOne + inputNumberTwo})}")
+    elif operacao == "-":
+        lblResult.config(text=f"Resultado: {int({inputNumberOne - inputNumberTwo})}")
+    elif operacao == "*":
+        lblResult.config(text=f"Resultado: {int({inputNumberOne * inputNumberTwo})}")
+    elif operacao == "/":
+        if lblNumberTwo == 0:
+            return
+        lblResult.config(text=f"Resultado: {int({inputNumberOne / inputNumberTwo})}")
 
 def sum():
     numberOne= inputNumberOne.get()
